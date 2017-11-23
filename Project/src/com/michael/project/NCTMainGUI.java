@@ -30,11 +30,9 @@ public class NCTMainGUI extends JFrame {
         //Used to open up instances of other classes via JButtons
 
         //Adds Action Listener to Admin Button
-        adminButton.addActionListener(new ActionListener()
-        {
+        adminButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 NCTCentre nct = new NCTCentre();
                 nct.setVisible(true);
             }
@@ -47,17 +45,15 @@ public class NCTMainGUI extends JFrame {
 
             }
         });
-
     }
 
 
+        //Main
 
-
-
-
-    //Main
-    public static void main(String[]args){
+    public static void main(String[] args) {
         NCTMainGUI gui = new NCTMainGUI();
         gui.setVisible(true);
     }
+
+
 }

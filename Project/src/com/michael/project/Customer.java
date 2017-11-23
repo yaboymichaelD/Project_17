@@ -17,7 +17,7 @@ public class Customer extends Person {
 
     }
     //Must add testId + CustNum to this constructor
-    public Customer(String firstName,String lastName,String address,int phoneNum,int licenceNum)
+    public Customer(String firstName,String lastName,String address,int phoneNum,int licenceNum,double testId)
     {
         //Grabs Attributes from Super Class AKA Person
         super(firstName,lastName,address,phoneNum,licenceNum);
@@ -39,7 +39,6 @@ public class Customer extends Person {
     {
         return testId;
     }
-
     public int getCustNum(int custNum)
     {
         return custNum;

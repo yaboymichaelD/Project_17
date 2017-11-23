@@ -11,6 +11,21 @@ public class Car {
     private int numDoors;
     private int numOwners;
 
+    //No Argument Constructor for a Car object
+    public Car(){
+        this("unknown","unknown",0,0,0,0,"unknown");
+    }
+    //Multi Argument Constructor for a Car object
+    public Car(String make,String model,int year, double kms,int numDoors, int numOwners , String registration)
+    {
+        setMake(make);
+        setModel(model);
+        setYear(year);
+        setKms(kms);
+        setNumDoors(numDoors);
+        setNumOwners(numOwners);
+        setRegistration(registration);
+    }
 
     //Setters
     public void setMake(String make) {
