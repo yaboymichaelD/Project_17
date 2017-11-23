@@ -35,9 +35,8 @@ public class NCTMainGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-
-
-
+                NCTCentre nct = new NCTCentre();
+                nct.setVisible(true);
             }
         });
 

@@ -1,6 +1,6 @@
 package com.michael.project;
 
-public class Person {
+public abstract class Person {
 
     //Attributes
     private String firstName;

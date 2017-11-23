@@ -3,30 +3,27 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
 import java.awt.*;
-import java.io.*;
 
-
-
-public class NCTCentre extends JFrame implements ActionListener {
+public class NCTCentre extends JFrame implements ActionListener{
 
     private JMenu fileMenu;
     private JMenu editMenu;
     private JTextField txtfield;
+
 
     //Initialise Array for Cars (Must create looping structure for this)
     Car car1 = new Car();
     ArrayList<Car> cars;
 
     //Initialise Array for Customers
-    Customer cust1 = new Customer();
-    ArrayList<Customer> customers;
+    //Customer [] ncttest = new Customer[5];
 
     public NCTCentre()
     {
         setTitle("NCT Center");
         setSize(800,800);
         setResizable(true);
-        setLocation(800,1000);
+        setLocation(500,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         Container cpane;
@@ -60,10 +57,20 @@ public class NCTCentre extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e){
         if (e.getActionCommand().equals("Create NCT Test"))
         {
-            JOptionPane.showMessageDialog(null,"Welcome To NCT Center");
+
+              CreateTest ct = new CreateTest();
+              ct.createTestFrame.setVisible(true);
+
+                //Initially looking to create Customers from here. Inheritance causing problems.
+                //for(int x=0; x<=5; x++) {
+
+                //((JOptionPane.showInputDialog("Please Enter Drivers Name", "Test Creator")));
+
+                //ncttest[x]=new Customer(firstName,lastName,address,phoneNum,licenceNum);
+            }
         }
 
     }
 
 
-}
+

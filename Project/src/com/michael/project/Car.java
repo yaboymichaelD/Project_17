@@ -5,6 +5,7 @@ public class Car {
     //Cars Attributes
     private String make;
     private String model;
+    private String registration;
     private int year;
     private double kms;
     private int numDoors;
@@ -36,6 +37,8 @@ public class Car {
         this.numOwners = numOwners;
     }
 
+    public void setRegistration(String registration){this.registration = registration;}
+
     //Getters
     public String getMake() {
         return make;
@@ -61,11 +64,14 @@ public class Car {
         return numOwners;
     }
 
+    public String getRegistration() {return registration;}
+
     @Override
     public String toString() {
         return "Car{" +
                 "make='" + make + '\'' +
                 ", model='" + model + '\'' +
+                ", registration='" + registration + '\'' +
                 ", year=" + year +
                 ", kms=" + kms +
                 ", numDoors=" + numDoors +
