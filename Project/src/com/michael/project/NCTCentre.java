@@ -1,7 +1,8 @@
 package com.michael.project;
 import javax.swing.*;
 import java.awt.event.*;
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
 import java.awt.*;
 
 public class NCTCentre extends JFrame implements ActionListener{
@@ -13,10 +14,11 @@ public class NCTCentre extends JFrame implements ActionListener{
 
     //Initialise Array for Cars (Must create looping structure for this)
     Car car1 = new Car();
-    ArrayList<Car> cars;
+    List<Car> cars = new ArrayList<Car>();
 
     //Initialise Array for Customers
-    Customer [] ncttest = new Customer[5];
+    //Customer [] ncttest = new Customer[5];
+    List<Customer> ncttest = new ArrayList<Customer>();
 
     public NCTCentre()
     {
@@ -57,19 +59,19 @@ public class NCTCentre extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e){
         if (e.getActionCommand().equals("Create NCT Test"))
         {
-            for (int x = 0; x <= 5; x++) {
-                //Car car = makeCar();
+            while (JOptionPane.showConfirmDialog(null,"Make Customer?")==JOptionPane.YES_OPTION){
+
                 Customer customer = makeCustomer();
+                ncttest.add(customer);
+                //Car car = makeCar();
 
-                //PREVIOUSLY CREATED NEW FRAME AND PROMPTED TO ENTER THERE. NOW USING MAKE CAR
-                //CreateTest ct = new CreateTest();
-                //ct.createTestFrame.setVisible(true);
 
-                ncttest[x] = new Customer();
 
-                JOptionPane.showMessageDialog(null,ncttest);
+
+
 
                 }
+                    System.out.println(ncttest);
             }
         }
 
@@ -92,7 +94,7 @@ public class NCTCentre extends JFrame implements ActionListener{
 
     }
 
-    private static Customer makeCustomer(){
+   private static Customer makeCustomer(){
         String firstName,lastName,address;
         int phoneNum,licenceNum;
         double testId;
@@ -105,8 +107,12 @@ public class NCTCentre extends JFrame implements ActionListener{
         licenceNum = ((Integer.parseInt(JOptionPane.showInputDialog(null,"Please Enter Customers Licence Number", "Customers Credentials",JOptionPane.QUESTION_MESSAGE))));
         testId= (random);
 
-        Customer customer = new Customer(firstName,lastName,address,phoneNum,licenceNum,testId);
+        Customer customer = new Customer(firstName,lastName,address,phoneNum,licenceNum);
         return customer;
+
+
+
+
     }
 
     }

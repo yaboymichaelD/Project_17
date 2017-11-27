@@ -18,13 +18,13 @@ public class NCTMainGUI extends JFrame {
 
         //Creates Buttons
         JButton adminButton = new JButton("Administrator");
-        JButton custButton = new JButton("Customer");
+        JButton testButton = new JButton("Test Car");
 
         Container cpane = getContentPane();
         //Sets layout and Adds Buttons to Contentpane
         cpane.setLayout(new FlowLayout());
         cpane.add(adminButton);
-        cpane.add(custButton);
+        cpane.add(testButton);
 
 
         //Used to open up instances of other classes via JButtons
@@ -39,10 +39,11 @@ public class NCTMainGUI extends JFrame {
         });
 
         //Adds Actions Listener to Customer Button
-        custButton.addActionListener(new ActionListener() {
+        testButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                NCTTest ncttest = new NCTTest();
+                ncttest.setVisible(true);
             }
         });
     }

@@ -1,6 +1,6 @@
 package com.michael.project;
 
-import java.io.Serializable;
+
 
 public class Customer extends Person {
 
@@ -17,7 +17,7 @@ public class Customer extends Person {
 
     }
     //Must add testId + CustNum to this constructor
-    public Customer(String firstName,String lastName,String address,int phoneNum,int licenceNum,double testId)
+    public Customer(String firstName,String lastName,String address,int phoneNum,int licenceNum)
     {
         //Grabs Attributes from Super Class AKA Person
         super(firstName,lastName,address,phoneNum,licenceNum);

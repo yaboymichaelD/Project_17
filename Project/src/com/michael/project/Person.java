@@ -16,7 +16,7 @@ public abstract class Person {
     }
 
     //Multi arg constructor
-    public Person(String firstName, String lastName,String address,int phoneNum , int licenceNum)
+    public Person(String firstName, String lastName,String address,int phoneNum,int licenceNum)
     {
         this.firstName = firstName;
         this.lastName = lastName;
