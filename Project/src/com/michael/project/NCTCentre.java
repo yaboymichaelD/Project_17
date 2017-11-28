@@ -1,11 +1,12 @@
 package com.michael.project;
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.*;
 
-public class NCTCentre extends JFrame implements ActionListener{
+public class NCTCentre extends JFrame implements ActionListener,Serializable {
 
     private JMenu fileMenu;
     private JMenu editMenu;
@@ -17,15 +18,14 @@ public class NCTCentre extends JFrame implements ActionListener{
     List<Car> cars = new ArrayList<Car>();
 
     //Initialise Array for Customers
-    //Customer [] ncttest = new Customer[5];
-    List<Customer> ncttest = new ArrayList<Customer>();
+    List<Customer> customerlist = new ArrayList<Customer>();
 
-    public NCTCentre()
-    {
+
+    public NCTCentre() {
         setTitle("NCT Center");
-        setSize(800,800);
+        setSize(800, 800);
         setResizable(true);
-        setLocation(500,500);
+        setLocation(500, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         Container cpane;
@@ -42,38 +42,43 @@ public class NCTCentre extends JFrame implements ActionListener{
         menBar.add(editMenu);
     }
 
-    private void CreateEditMenu(){
+    private void CreateEditMenu() {
         JMenuItem viewusers;
         fileMenu = new JMenu("View All Tests");
     }
 
-    private void CreateFileMenu(){
-        JMenuItem test ;
+    private void CreateFileMenu() {
+        JMenuItem test;
         editMenu = new JMenu("Test");
         test = new JMenuItem("Create NCT Test");
         test.addActionListener(this);
         editMenu.add(test);
 
     }
+
     //This Event handles the Create NCT Test JMenu Item.
     public void actionPerformed(ActionEvent e){
-        if (e.getActionCommand().equals("Create NCT Test"))
-        {
-            while (JOptionPane.showConfirmDialog(null,"Make Customer?")==JOptionPane.YES_OPTION){
+        if (e.getActionCommand().equals("Create NCT Test")) {
+            while (JOptionPane.showConfirmDialog(null, "Make Customer?") == JOptionPane.YES_OPTION) {
 
                 Customer customer = makeCustomer();
-                ncttest.add(customer);
+                customerlist.add(customer);
                 //Car car = makeCar();
 
 
-
-
-
-
-                }
-                    System.out.println(ncttest);
             }
+
+            System.out.println(customerlist);
+
+            try {
+                save();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
+
         }
+    }
 
     private static Car makeCar() {
         String make, model, reg;
@@ -94,28 +99,37 @@ public class NCTCentre extends JFrame implements ActionListener{
 
     }
 
-   private static Customer makeCustomer(){
-        String firstName,lastName,address;
-        int phoneNum,licenceNum;
+    private static Customer makeCustomer() {
+        String firstName, lastName, address;
+        int phoneNum, licenceNum;
         double testId;
         double random = Math.random() * 1000000 + 100000000;
 
-        firstName =((JOptionPane.showInputDialog(null,"Please Enter Customers First Name", "Customers Credentials",JOptionPane.QUESTION_MESSAGE)));
-        lastName =((JOptionPane.showInputDialog(null,"Please Enter Customers Last Name", "Customers Credentials",JOptionPane.QUESTION_MESSAGE)));
-        address = ((JOptionPane.showInputDialog(null,"Please Enter Customers Address", "Customers Credentials",JOptionPane.QUESTION_MESSAGE)));
-        phoneNum = ((Integer.parseInt(JOptionPane.showInputDialog(null,"Please Enter Customers Phone Number", "Customers Credentials",JOptionPane.QUESTION_MESSAGE))));
-        licenceNum = ((Integer.parseInt(JOptionPane.showInputDialog(null,"Please Enter Customers Licence Number", "Customers Credentials",JOptionPane.QUESTION_MESSAGE))));
-        testId= (random);
+        firstName = ((JOptionPane.showInputDialog(null, "Please Enter Customers First Name", "Customers Credentials", JOptionPane.QUESTION_MESSAGE)));
+        lastName = ((JOptionPane.showInputDialog(null, "Please Enter Customers Last Name", "Customers Credentials", JOptionPane.QUESTION_MESSAGE)));
+        address = ((JOptionPane.showInputDialog(null, "Please Enter Customers Address", "Customers Credentials", JOptionPane.QUESTION_MESSAGE)));
+        phoneNum = ((Integer.parseInt(JOptionPane.showInputDialog(null, "Please Enter Customers Phone Number", "Customers Credentials", JOptionPane.QUESTION_MESSAGE))));
+        licenceNum = ((Integer.parseInt(JOptionPane.showInputDialog(null, "Please Enter Customers Licence Number", "Customers Credentials", JOptionPane.QUESTION_MESSAGE))));
+        testId = (random);
 
-        Customer customer = new Customer(firstName,lastName,address,phoneNum,licenceNum);
+        Customer customer = new Customer(firstName, lastName, address, phoneNum, licenceNum);
         return customer;
 
+        }
+
+            private void save() throws IOException {
+                File outFile = new File("customer.dat");
+                FileOutputStream fileOut = new FileOutputStream(outFile);
+                ObjectOutputStream os = new ObjectOutputStream(fileOut);
+                os.writeObject(customerlist);
+                os.close();
+
+            }
 
 
 
-    }
+}
 
-    }
 
 
 

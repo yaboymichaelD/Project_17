@@ -2,19 +2,19 @@ package com.michael.project;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.*;
 
 
-public class NCTTest extends JFrame implements ActionListener{
+public class NCTTest extends JFrame implements ActionListener,Serializable {
 
-    public NCTTest()
-    {
+    public NCTTest() {
         setTitle("NCT Center");
-        setSize(800,800);
+        setSize(800, 800);
         setResizable(true);
-        setLocation(500,500);
+        setLocation(500, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         JButton testButton = new JButton("Display Customers");
@@ -24,6 +24,7 @@ public class NCTTest extends JFrame implements ActionListener{
         cpane = getContentPane();
         cpane.setLayout(new FlowLayout());
         cpane.add(testButton);
+
         /*CreateFileMenu();
         CreateEditMenu();*/
 
@@ -34,36 +35,84 @@ public class NCTTest extends JFrame implements ActionListener{
         menBar.add(editMenu);*/
     }
 
-    public void actionPerformed(ActionEvent e){
-        if (e.getActionCommand().equals("Display Customers"))
-        {
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("Display Customers")) {
+            try {
+                loadFile();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
 
-            Customer[]    customer;         //declare the person array
-            customer = new Customer[4];    //and then create it
+
+
+
+
+
+
+
+            /*customer = new Customer[4];    //and then create it
 
             for (int i = 0; i < customer.length; i++) {
                 customer[i] = new Customer();
                 //read in data values
-                customer[i].setFirstName(JOptionPane.showInputDialog(null,"Enter name:"));
-                customer[i].setLastName (JOptionPane.showInputDialog(null,"Enter age:"));
-                customer[i].setAddress(JOptionPane.showInputDialog(null,"Enter address:"));
-                customer[i].setPhoneNum(Integer.parseInt(JOptionPane.showInputDialog(null,"Enter phone:")));
-                customer[i].setLicenceNum(Integer.parseInt(JOptionPane.showInputDialog(null,"Enter Lice Num:")));
-            }
+                customer[i].setFirstName(JOptionPane.showInputDialog(null, "Enter name:"));
+                customer[i].setLastName(JOptionPane.showInputDialog(null, "Enter age:"));
+                customer[i].setAddress(JOptionPane.showInputDialog(null, "Enter address:"));
+                customer[i].setPhoneNum(Integer.parseInt(JOptionPane.showInputDialog(null, "Enter phone:")));
+                customer[i].setLicenceNum(Integer.parseInt(JOptionPane.showInputDialog(null, "Enter Lice Num:")));
+            }*/
+
             // create a combo box
             JComboBox names = new JComboBox();
             // add all the names into it
             for (Customer pp : customer)
-                names.addItem( pp.getFirstName());
+                names.addItem(pp.getFirstName());
             // Allow the user to pick one name from the combo box
-            JOptionPane.showMessageDialog(null,names,"Person list", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, names, "Person list", JOptionPane.PLAIN_MESSAGE);
             // find the index position of the one selected
             int idx = names.getSelectedIndex();
             // display this item from the array
-            JOptionPane.showMessageDialog(null,"The person you picked was person no " + idx +
+            JOptionPane.showMessageDialog(null, "The person you picked was person no " + idx +
                     " whose full details are as follows: \n" + customer[idx].toString());
-        }
+
 
         }
     }
+
+    public void loadFile() throws IOException {
+
+
+        File inFile = new File("customers.data");
+        FileInputStream inFileStream = new FileInputStream(inFile);
+        ArrayList<Customer> customerlist = new ArrayList<Customer>();
+        boolean keepgoing = true;
+        try {
+            ObjectInputStream in = new ObjectInputStream(inFileStream);
+
+            while(keepgoing){
+
+                Customer cust = (Customer) in.readObject();
+
+                if (cust != null)
+                customerlist.add(cust);
+                else
+                keepgoing = false;
+
+                }
+            }
+
+            catch(Exception e){
+
+
+
+            }
+
+
+
+    }
+
+
+
+
+}
 
