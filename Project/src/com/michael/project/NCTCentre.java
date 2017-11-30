@@ -23,11 +23,11 @@ public class NCTCentre extends JFrame implements ActionListener,Serializable {
 
     public NCTCentre() {
         setTitle("NCT Center");
-        setSize(800, 800);
+        setSize(500, 500);
         setResizable(true);
         setLocation(500, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
+        setLocationRelativeTo(null);
         Container cpane;
         cpane = getContentPane();
         cpane.setLayout(new FlowLayout());
@@ -42,33 +42,40 @@ public class NCTCentre extends JFrame implements ActionListener,Serializable {
         menBar.add(editMenu);
     }
 
-    private void CreateEditMenu() {
-        JMenuItem viewusers;
-        fileMenu = new JMenu("View All Tests");
-    }
-
     private void CreateFileMenu() {
         JMenuItem test;
-        editMenu = new JMenu("Test");
+        fileMenu = new JMenu("Test");
         test = new JMenuItem("Create NCT Test");
         test.addActionListener(this);
-        editMenu.add(test);
+        fileMenu.add(test);
 
     }
 
+    private void CreateEditMenu() {
+        JMenuItem options;
+        editMenu = new JMenu("Options");
+        options = new JMenuItem("Exit to MainMenu");
+        options.addActionListener(this);
+        editMenu.add(options);
+    }
+
+
+
     //This Event handles the Create NCT Test JMenu Item.
-    public void actionPerformed(ActionEvent e){
+    public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Create NCT Test")) {
             while (JOptionPane.showConfirmDialog(null, "Make Customer?") == JOptionPane.YES_OPTION) {
 
                 Customer customer = makeCustomer();
                 customerlist.add(customer);
-                //Car car = makeCar();
+                Car car = makeCar();
+                cars.add(car);
 
 
             }
 
             System.out.println(customerlist);
+            System.out.println(cars);
 
             try {
                 save();
@@ -76,13 +83,27 @@ public class NCTCentre extends JFrame implements ActionListener,Serializable {
                 e1.printStackTrace();
             }
 
+            try {
+                saveCar();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
+            if (e.getActionCommand().equals("Exit to MainMenu")) {
+                setVisible(false);
+
+            }
+
+            
+
 
         }
+
     }
 
     private static Car makeCar() {
         String make, model, reg;
-        int year, numdoors, numowners;
+        int year, numdoors, ownerslicence;
         double kms;
 
         make = JOptionPane.showInputDialog(null, "Please Enter the Make of the Vehicle", "Enter Car Details", JOptionPane.QUESTION_MESSAGE);
@@ -90,10 +111,10 @@ public class NCTCentre extends JFrame implements ActionListener,Serializable {
         reg = JOptionPane.showInputDialog(null, "Please Enter the Reg of the Vehicle", "Enter Car Details", JOptionPane.QUESTION_MESSAGE);
         year = Integer.parseInt(JOptionPane.showInputDialog(null, "Please Enter the Year of the Vehicle", "Enter Car Details", JOptionPane.QUESTION_MESSAGE));
         numdoors = Integer.parseInt(JOptionPane.showInputDialog(null, "Please Enter the Number of Doors the Vehicle has", "Enter Car Details", JOptionPane.QUESTION_MESSAGE));
-        numowners = Integer.parseInt(JOptionPane.showInputDialog(null, "Please Enter the Number of Owners the Vehicle has had", "Enter Car Details", JOptionPane.QUESTION_MESSAGE));
-        kms = Integer.parseInt(JOptionPane.showInputDialog(null, "Please Enter the Number of Kilometers of the Vehicle", "Enter Car Details", JOptionPane.QUESTION_MESSAGE));
+        ownerslicence = Integer.parseInt(JOptionPane.showInputDialog(null, "Please Enter the Number of Owners the Vehicle has had", "Enter Car Details", JOptionPane.QUESTION_MESSAGE));
+        kms = Double.parseDouble(JOptionPane.showInputDialog(null, "Please Enter the Number of Kilometers of the Vehicle", "Enter Car Details", JOptionPane.QUESTION_MESSAGE));
 
-        Car car = new Car(make, model, year, kms, numdoors, numowners, reg);
+        Car car = new Car(make, model, year, kms, numdoors, ownerslicence, reg);
         return car;
 
 
@@ -118,13 +139,22 @@ public class NCTCentre extends JFrame implements ActionListener,Serializable {
         }
 
             private void save() throws IOException {
-                File outFile = new File("customer.dat");
+                File outFile = new File("customers.txt");
                 FileOutputStream fileOut = new FileOutputStream(outFile);
                 ObjectOutputStream os = new ObjectOutputStream(fileOut);
                 os.writeObject(customerlist);
                 os.close();
 
             }
+
+            private void saveCar() throws IOException{
+                File outFile = new File("cars.txt");
+                FileOutputStream fileOut = new FileOutputStream(outFile);
+                ObjectOutputStream os = new ObjectOutputStream(fileOut);
+                os.writeObject(cars);
+                os.close();
+            }
+
 
 
 

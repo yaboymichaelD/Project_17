@@ -9,21 +9,21 @@ public class Car {
     private int year;
     private double kms;
     private int numDoors;
-    private int numOwners;
+    private int ownersLicence;
 
     //No Argument Constructor for a Car object
     public Car(){
         this("unknown","unknown",0,0,0,0,"unknown");
     }
     //Multi Argument Constructor for a Car object
-    public Car(String make,String model,int year, double kms,int numDoors, int numOwners , String registration)
+    public Car(String make,String model,int year, double kms,int numDoors, int ownersLicence, String registration)
     {
         setMake(make);
         setModel(model);
         setYear(year);
         setKms(kms);
         setNumDoors(numDoors);
-        setNumOwners(numOwners);
+        setNumOwners(ownersLicence);
         setRegistration(registration);
     }
 
@@ -48,8 +48,8 @@ public class Car {
         this.numDoors = numDoors;
     }
 
-    public void setNumOwners(int numOwners) {
-        this.numOwners = numOwners;
+    public void setNumOwners(int ownersLicence) {
+        this.ownersLicence = ownersLicence;
     }
 
     public void setRegistration(String registration){this.registration = registration;}
@@ -75,8 +75,8 @@ public class Car {
         return numDoors;
     }
 
-    public int getNumOwners() {
-        return numOwners;
+    public int getOwnersLicence() {
+        return ownersLicence;
     }
 
     public String getRegistration() {return registration;}
@@ -90,7 +90,7 @@ public class Car {
                 ", year=" + year +
                 ", kms=" + kms +
                 ", numDoors=" + numDoors +
-                ", numOwners=" + numOwners +
+                ", numOwners=" + ownersLicence +
                 '}';
     }
 }

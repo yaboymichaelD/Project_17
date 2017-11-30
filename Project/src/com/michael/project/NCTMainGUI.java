@@ -12,9 +12,10 @@ public class NCTMainGUI extends JFrame {
 
         //Sets Attributes of main GUI
         setTitle("Main GUI Unit");
-        setSize(600, 800);
+        setSize(500, 500);
         setResizable(true);
         setLocation(0, 0);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         //Creates Buttons
@@ -50,7 +51,8 @@ public class NCTMainGUI extends JFrame {
     }
 
 
-        //Main
+
+    //Main
 
     public static void main(String[] args) throws IOException {
         NCTMainGUI gui = new NCTMainGUI();
