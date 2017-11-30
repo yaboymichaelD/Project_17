@@ -1,6 +1,8 @@
 package com.michael.project;
 
-public abstract class Person {
+import java.io.Serializable;
+
+public abstract class Person implements Serializable {
 
     //Attributes
     private String firstName;
@@ -18,11 +20,11 @@ public abstract class Person {
     //Multi arg constructor
     public Person(String firstName, String lastName,String address,int phoneNum,int licenceNum)
     {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.phoneNum = phoneNum;
-        this.licenceNum = licenceNum;
+        setFirstName(firstName);
+        setLastName(lastName);
+        setAddress(address);
+        setPhoneNum(phoneNum);
+        setLicenceNum(licenceNum);
     }
 
     //Setters

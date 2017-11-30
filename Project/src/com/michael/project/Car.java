@@ -1,6 +1,8 @@
 package com.michael.project;
 
-public class Car {
+import java.io.Serializable;
+
+public class Car implements Serializable {
 
     //Cars Attributes
     private String make;
@@ -26,7 +28,11 @@ public class Car {
         setNumOwners(ownersLicence);
         setRegistration(registration);
     }
-
+    public Car(String make,String model)
+    {
+        setMake(make);
+        setModel(model);
+    }
     //Setters
     public void setMake(String make) {
         this.make = make;

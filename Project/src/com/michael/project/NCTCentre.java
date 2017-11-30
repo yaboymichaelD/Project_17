@@ -71,10 +71,9 @@ public class NCTCentre extends JFrame implements ActionListener,Serializable {
                 Car car = makeCar();
                 cars.add(car);
 
-
             }
 
-            System.out.println(customerlist);
+            //System.out.println(customerlist);
             System.out.println(cars);
 
             try {
@@ -93,9 +92,6 @@ public class NCTCentre extends JFrame implements ActionListener,Serializable {
                 setVisible(false);
 
             }
-
-            
-
 
         }
 
@@ -139,7 +135,8 @@ public class NCTCentre extends JFrame implements ActionListener,Serializable {
         }
 
             private void save() throws IOException {
-                File outFile = new File("customers.txt");
+                System.out.println(customerlist);
+                File outFile = new File("customers.dat");
                 FileOutputStream fileOut = new FileOutputStream(outFile);
                 ObjectOutputStream os = new ObjectOutputStream(fileOut);
                 os.writeObject(customerlist);
@@ -148,7 +145,7 @@ public class NCTCentre extends JFrame implements ActionListener,Serializable {
             }
 
             private void saveCar() throws IOException{
-                File outFile = new File("cars.txt");
+                File outFile = new File("cars.dat");
                 FileOutputStream fileOut = new FileOutputStream(outFile);
                 ObjectOutputStream os = new ObjectOutputStream(fileOut);
                 os.writeObject(cars);
